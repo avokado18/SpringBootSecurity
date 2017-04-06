@@ -3,6 +3,7 @@ package com.dsr.myProject.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.criteria.Predicate;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -23,7 +24,13 @@ public class User {
 
     private String name;
     private String password;
+    private Byte enabled;
 
+    public User(User user) {
+        this.name = user.name;
+        this.password = user.password;
+        this.enabled = user.enabled;
+    }
 
     public User() {
     }
@@ -42,6 +49,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Byte getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Byte enabled) {
+        this.enabled = enabled;
     }
 
     @Override
