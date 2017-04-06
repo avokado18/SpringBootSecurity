@@ -14,6 +14,12 @@
                 <td class="editable-td word-priority">${word.priority!}</td>
             </tr>
         </#list>
+        <#list users as user>
+            <tr>
+                <td class="editable-td word-original">${user.name!}</td>
+                <td class="editable-td word-translated">${user.password!}</td>
+            </tr>
+        </#list>
         </table>
     </div>
 </div>

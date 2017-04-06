@@ -1948,3 +1948,23 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/1/D
 	at org.h2.mvstore.FileStore.open(FileStore.java:173)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:348)
 	... 94 more
+2017-04-05 18:28:31 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "USERS" не найдена
+Table "USERS" not found; SQL statement:
+select username from users where username = ? [42102-193]
+2017-04-05 18:33:21 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "USERS" не найдена
+Table "USERS" not found; SQL statement:
+select username from users where username = ? [42102-193]
+2017-04-05 18:34:04 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "USERS" не найдена
+Table "USERS" not found; SQL statement:
+select username from users where username = ? [42102-193]
+2017-04-05 18:37:21 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "USERS" не найдена
+Table "USERS" not found; SQL statement:
+select username from users where username = ? [42102-193]
+2017-04-05 18:48:34 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "USERS" не найдена
+Table "USERS" not found; SQL statement:
+select username from users where username = ? [42102-193]

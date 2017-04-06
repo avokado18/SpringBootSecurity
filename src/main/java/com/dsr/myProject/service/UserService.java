@@ -23,6 +23,11 @@ public class UserService {
     }
 
     @Transactional
+    public User findOne(){
+        return getAll().get(0);
+    }
+
+    @Transactional
     public List<User> getAll() {
         return Lists.newArrayList(userRepository.findAll());
     }

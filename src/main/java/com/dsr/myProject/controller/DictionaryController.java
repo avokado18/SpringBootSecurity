@@ -1,6 +1,7 @@
 package com.dsr.myProject.controller;
 
 import com.dsr.myProject.model.Word;
+import com.dsr.myProject.service.UserService;
 import com.dsr.myProject.service.WordsService;
 import com.dsr.myProject.translater.Parser;
 import com.dsr.myProject.translater.Translater;
@@ -22,6 +23,8 @@ public class DictionaryController {
 
     @Autowired
     private WordsService wordsService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "")
     public String index() {
@@ -38,6 +41,7 @@ public class DictionaryController {
     @RequestMapping(value = "/list", method = GET)
     public String list(ModelMap modelMap) {
         modelMap.addAttribute("words", wordsService.getAll());
+        modelMap.addAttribute("users", userService.getAll());
         return "dictionary/list";
     }
 
