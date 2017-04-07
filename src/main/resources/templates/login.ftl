@@ -6,7 +6,7 @@
 <form action="/login" method="post">
     <div>
         <label> User Name :
-            <input type="text" name="username" class="form-control form-horizontal"/> </label>
+            <input type="text" name="name" class="form-control form-horizontal"/> </label>
     </div>
     <div>
         <label> Password:
