@@ -1,5 +1,8 @@
 package com.dsr.myProject.controller;
 
+import com.dsr.myProject.dto.UserDTO;
+import com.dsr.myProject.mapper.Mapper;
+import com.dsr.myProject.model.User;
 import com.dsr.myProject.model.Word;
 import com.dsr.myProject.service.UserService;
 import com.dsr.myProject.service.WordsService;
@@ -23,8 +26,12 @@ public class DictionaryController {
 
     @Autowired
     private WordsService wordsService;
+
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private Mapper mapper;
 
     @RequestMapping(value = "")
     public String index() {
@@ -41,7 +48,13 @@ public class DictionaryController {
     @RequestMapping(value = "/list", method = GET)
     public String list(ModelMap modelMap) {
         modelMap.addAttribute("words", wordsService.getAll());
-        modelMap.addAttribute("users", userService.getAll());
+        List<UserDTO> userDTOs = userService.getAll();
+        List<User> users = new ArrayList<User>();
+        for (UserDTO userDTO : userDTOs){
+            User user = mapper.map(userDTO, User.class);
+            users.add(user);
+        }
+        modelMap.addAttribute("users", users);
         return "dictionary/list";
     }
 

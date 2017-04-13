@@ -1,5 +1,7 @@
 package com.dsr.myProject.service;
 
+import com.dsr.myProject.dto.UserDTO;
+import com.dsr.myProject.mapper.Mapper;
 import com.dsr.myProject.model.User;
 import com.dsr.myProject.repository.UserRepository;
 import com.google.common.collect.Lists;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,28 +17,32 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private Mapper mapper;
+
     @Transactional
-    public User create(User user){
+    public UserDTO create(User user){
         User newUser = new User();
         newUser.setName(user.getName());
         newUser.setPassword(user.getPassword()  );
         newUser.setBirthdate(user.getBirthdate());
-        return userRepository.save(newUser);
+        return mapper.map(userRepository.save(newUser), UserDTO.class);
     }
 
     @Transactional
-    public User findOne(){
-        return getAll().get(0);
+    public List<UserDTO> getAll() {
+        ArrayList<User> users = Lists.newArrayList(userRepository.findAll());
+        ArrayList<UserDTO> userDTOs = new ArrayList<UserDTO>();
+        for (User user : users){
+            UserDTO userDTO = mapper.map(user, UserDTO.class);
+            userDTOs.add(userDTO);
+        }
+        return userDTOs;
     }
 
     @Transactional
-    public List<User> getAll() {
-        return Lists.newArrayList(userRepository.findAll());
-    }
-
-    @Transactional
-    public User findByName(String name){
-        return userRepository.findByName(name);
+    public UserDTO findByName(String name){
+        return mapper.map(userRepository.findByName(name), UserDTO.class);
     }
 
 }

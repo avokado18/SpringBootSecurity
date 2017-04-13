@@ -16,8 +16,9 @@
         </#list>
         <#list users as user>
             <tr>
-                <td class="editable-td word-original">${user.name!}</td>
-                <td class="editable-td word-translated">${user.password!}</td>
+                <td class="editable-td user-name">${user.name!}</td>
+                <td class="editable-td user-password">${user.password!}</td>
+                <td class="editable-td user-birthdate">${user.birthdate!?date}</td>
             </tr>
         </#list>
         </table>

@@ -1,5 +1,6 @@
 package com.dsr.myProject.security;
 
+import com.dsr.myProject.dto.UserDTO;
 import com.dsr.myProject.model.User;
 import com.dsr.myProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,11 @@ import java.util.Date;
 public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private UserService userService;
+
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
-        User user = userService.findByName(name);
-        System.out.println(user.toString());
+        UserDTO user = userService.findByName(name);
         if ((user != null) && (password.equals(user.getPassword()) && (checkIs18yearsOld(user.getBirthdate())))) {
             return new UsernamePasswordAuthenticationToken(
                     name, password, new ArrayList<GrantedAuthority>());
@@ -35,21 +36,22 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                 UsernamePasswordAuthenticationToken.class);
     }
 
-    private boolean checkIs18yearsOld(Date date){
+    private boolean checkIs18yearsOld(long date){
         Date now = new Date();
-        if (now.getYear() - date.getYear() < 18)
+        Date birthdate = new Date(date);
+        if (now.getYear() - birthdate.getYear() < 18)
             return false;
         else
-            if (now.getYear() - date.getYear() > 18)
+            if (now.getYear() - birthdate.getYear() > 18)
                 return true;
             else {
-                if (now.getMonth() > date.getMonth())
+                if (now.getMonth() > birthdate.getMonth())
                     return true;
                 else
-                    if (now.getMonth() < date.getMonth())
+                    if (now.getMonth() < birthdate.getMonth())
                         return false;
                     else {
-                        if (now.getDate() >= date.getDate())
+                        if (now.getDate() >= birthdate.getDate())
                             return true;
                         else
                             return false;

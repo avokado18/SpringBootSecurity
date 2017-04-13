@@ -31,11 +31,11 @@ public class DbInit {
         User user = new User();
         user.setName("vika");
         user.setPassword("123");
-        user.setBirthdate(new Date(96, 3, 18));
+        user.setBirthdate(new Date(96, 2, 18));
         userService.create(user);
         user.setName("user");
         user.setPassword("password");
-        user.setBirthdate(new Date(100, 3, 18));
+        user.setBirthdate(new Date(99, 4, 18));
         userService.create(user);
         Word word = new Word();
         word.setOriginal("привет");
