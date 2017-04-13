@@ -1,5 +1,6 @@
 package com.dsr.myProject;
 
+import com.dsr.myProject.security.CustomAuthenticationProvider;
 import com.dsr.myProject.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,6 +19,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private CustomAuthenticationProvider authProvider;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -33,6 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+        auth.authenticationProvider(authProvider);
     }
 }

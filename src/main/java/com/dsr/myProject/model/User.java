@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.criteria.Predicate;
 
+import java.util.Date;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -25,6 +27,8 @@ public class User {
     private String name;
     private String password;
     private Byte enabled;
+    private Date birthdate;
+
 
     public User(User user) {
         this.name = user.name;
@@ -59,6 +63,14 @@ public class User {
         this.enabled = enabled;
     }
 
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,5 +90,16 @@ public class User {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                ", birthdate=" + birthdate +
+                '}';
     }
 }

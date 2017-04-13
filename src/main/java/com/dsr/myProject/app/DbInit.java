@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 
 @Component
 public class DbInit {
@@ -30,9 +31,11 @@ public class DbInit {
         User user = new User();
         user.setName("vika");
         user.setPassword("123");
+        user.setBirthdate(new Date(96, 3, 18));
         userService.create(user);
         user.setName("user");
         user.setPassword("password");
+        user.setBirthdate(new Date(100, 3, 18));
         userService.create(user);
         Word word = new Word();
         word.setOriginal("привет");

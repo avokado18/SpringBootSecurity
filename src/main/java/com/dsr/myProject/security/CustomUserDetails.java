@@ -7,6 +7,7 @@ import com.dsr.myProject.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 public class CustomUserDetails extends User implements UserDetails {
