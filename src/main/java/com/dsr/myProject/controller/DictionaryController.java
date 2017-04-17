@@ -47,13 +47,7 @@ public class DictionaryController {
     @RequestMapping(value = "/list", method = GET)
     public String list(ModelMap modelMap) {
         modelMap.addAttribute("words", wordsService.getAll());
-        List<UserDTO> userDTOs = userService.getAll();
-        List<User> users = new ArrayList<User>();
-        for (UserDTO userDTO : userDTOs){
-            User user = mapper.map(userDTO, User.class);
-            users.add(user);
-        }
-        modelMap.addAttribute("users", users);
+        modelMap.addAttribute("users", mapper.mapAsList(userService.getAll(), User.class));
         return "dictionary/list";
     }
 

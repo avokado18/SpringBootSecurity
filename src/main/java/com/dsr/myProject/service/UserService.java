@@ -32,12 +32,7 @@ public class UserService {
     @Transactional
     public List<UserDTO> getAll() {
         ArrayList<User> users = Lists.newArrayList(userRepository.findAll());
-        ArrayList<UserDTO> userDTOs = new ArrayList<UserDTO>();
-        for (User user : users){
-            UserDTO userDTO = mapper.map(user, UserDTO.class);
-            userDTOs.add(userDTO);
-        }
-        return userDTOs;
+        return mapper.mapAsList(users, UserDTO.class);
     }
 
     @Transactional
